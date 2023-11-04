@@ -1,0 +1,11 @@
+n :: Int;
+
+Let n = (True);
+
+somePred :: Bool;
+
+Let pred = (2);
+
+main :: Int;
+
+Let main = (n);

@@ -1,0 +1,9 @@
+
+f::Int->Int->Int ;
+
+Let rec f = (lambda x::Int . (lambda y::Int . (if ((x)==(0)) then (y) else 
+	(((f) $ ((x)-(1))) $ ((x)*(y))))::Int )::Int->Int );
+
+main :: Int ;
+
+Let main = (((f) $ (4)) $ (4)) ;

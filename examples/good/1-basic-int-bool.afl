@@ -1,0 +1,12 @@
+
+n :: Int ;
+
+Let n = (2) ;
+
+pred :: Bool ;
+
+Let pred = (False) ;
+
+main :: Int ;
+
+Let main = (n) ;

@@ -1,0 +1,7 @@
+f :: Int->Int->Int;
+
+Let f = (lambda n::Int . (n)::Int);
+
+main :: Int;
+
+Let main = ((f) $ (0));

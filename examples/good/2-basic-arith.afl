@@ -1,0 +1,11 @@
+n::Int ;
+
+pred::Bool ;
+
+Let n = (((((2)+(2))%(1000000007))^(6))/(2)) ;
+
+Let pred = ((True)&&((!(False))||((False)^^(False)))) ;
+
+main :: Int ;
+
+Let main = (n) ;

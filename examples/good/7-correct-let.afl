@@ -1,0 +1,3 @@
+main :: Int;
+
+Let main = (let y::Int be defined as (3) in (2));

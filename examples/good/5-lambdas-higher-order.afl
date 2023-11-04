@@ -1,0 +1,12 @@
+f :: Int->Int->Int ; -- SIGNATURES WITH PARENTHESES!!!!!!!!!!!!!
+
+Let f = (lambda x::Int . (lambda y::Int . ((y)+(x))::Int) ::Int->Int); ---DOESNT TYPE WELL AS HIGHER ORDER
+
+g :: (Int->Int)->Int;
+
+Let g = (lambda x::(Int->Int) . ((x)$(2))::Int);
+
+main :: Int ;
+
+Let main = ((g)$((f) $ (100000007))) ;
+

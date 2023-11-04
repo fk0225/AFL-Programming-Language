@@ -1,0 +1,8 @@
+f::Int->Int;
+
+Let f = (lambda n::Int . (if ((n)==(0)) then (0) else ((f)$((n)-(1))))::Int);
+
+
+main::Int;
+
+Let main = ((f)$(1));

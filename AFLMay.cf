@@ -1,0 +1,105 @@
+Prog. Program ::= [Expr] ;
+
+
+entrypoints Program;
+
+separator Expr ";" ;
+
+comment "{-" "-}" ;
+
+comment "--" ;
+
+comment "/*" "*/";
+
+comment "//";
+
+SignatVar. Signature ::= TypeName;
+
+SignatL. Signature ::= "[" Signature "]";
+
+SignatFun. Signature ::= "(" [Signature] ")";
+
+ExDecl. Expr ::= FunName "::" [Signature];
+
+ExDef. Expr ::= Definition;
+
+
+ELitInt.   Evaluable ::= "(" Integer  ")";
+
+ELitTrue.  Evaluable ::= "(" "True" ")";
+
+ELitFalse. Evaluable ::= "(" "False" ")";
+
+ECond. Evaluable ::= "(" "if" Evaluable "then" Evaluable "else" Evaluable ")";
+
+ENeg.       Evaluable ::= "(" "-" Evaluable ")" ;
+
+ENot.       Evaluable ::= "(" "!" Evaluable ")" ;
+
+EPow.	     Evaluable ::= "(" Evaluable "^" Evaluable ")" ;
+
+EMul.      Evaluable ::= "(" Evaluable MulOp Evaluable ")" ;
+
+EAdd.      Evaluable ::= "(" Evaluable AddOp Evaluable ")" ;
+
+ERel.      Evaluable ::= "(" Evaluable RelOp Evaluable ")" ;
+
+EAnd.      Evaluable ::= "(" Evaluable "&&" Evaluable ")";
+
+EOr.       Evaluable ::= "(" Evaluable OrOp Evaluable ")";
+
+
+EList. Evaluable ::= "(" List ")";
+
+ELet. Evaluable ::= "(" "let" FunName "::" [Signature] "be defined as" Evaluable "in" Evaluable ")";
+
+ELam. Evaluable ::= "(" "lambda" FunName "::" [Signature] "." Evaluable "::" [Signature] ")";
+
+EVar. Evaluable ::= "(" FunName ")";
+
+EFunApp. Evaluable ::= "(" Evaluable "$" Evaluable ")"; 
+
+Nonrec. Definition ::= "Let" FunName "=" Evaluable;
+
+Rec. Definition ::= "Let rec" FunName "=" Evaluable;
+
+
+LBrackets. List ::= "[" [Evaluable] "]" ; --potentially also here
+
+LHeadTail. List ::= "(" Evaluable ":" List ")"; --and here
+
+
+Plus.      AddOp ::= "+" ; 
+
+Minus.     AddOp ::= "-" ;
+
+Times.     MulOp ::= "*" ;
+
+Div.       MulOp ::= "/" ;
+
+Mod.       MulOp ::= "%" ;
+
+LT.       RelOp ::= "<" ;
+
+LE.        RelOp ::= "<=" ;
+
+GT.       RelOp ::= ">" ;
+
+GE.        RelOp ::= ">=" ;
+
+EQ.       RelOp ::= "==" ;
+
+NE.        RelOp ::= "!=" ;
+
+OR. OrOp ::= "||";
+
+XOR. OrOp ::= "^^";
+
+
+separator Evaluable ",";
+
+separator Signature "->";
+
+token TypeName (upper (letter | digit | '_')*) ;
+
+token FunName (lower (letter | digit | '_')*) ;

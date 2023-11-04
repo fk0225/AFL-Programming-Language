@@ -1,0 +1,3 @@
+main :: Int ;
+
+Let main = (let x::Int be defined as (1) in (let x::Int be defined as (2) in (x))) ;

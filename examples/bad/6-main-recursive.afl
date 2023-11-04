@@ -1,0 +1,3 @@
+main::Int->Int;
+
+Let rec main = (lambda x::Int . ((x)+((main)$((x)+(1))))::Int);

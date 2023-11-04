@@ -1,0 +1,11 @@
+f::[([Int]->Int)]->(Int->Int);
+
+Let f = (lambda x::[([Int]->Int)] . (lambda x::Int . (0)::Int)::(Int->Int));
+{-
+f2 :: Int->(Int->Int) ; -- SIGNATURES WITH PARENTHESES!!!!!!!!!!!!!
+
+Let f2 = (lambda x::Int . (lambda y::Int . ((y)+(x))::Int) ::Int) ;-} {- FUNCTION OVERWRITES FUNCTION????? -}
+
+main::Int;
+
+Let main = (((f) $ ([(lambda x::[Int] . (0)::Int)]))$(4));
