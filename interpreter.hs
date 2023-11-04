@@ -106,7 +106,6 @@ typeCheckEv(A.ENot e) funEnv typeEnv = do {
         otherwise -> throwError $ "Argument of logical negation is of wrong type " ++ (show v)
 }
 
-
 typeCheckEv(A.EPow e1 e2) funEnv typeEnv = do {
     v1 <- typeCheckEv e1 funEnv typeEnv;
     v2 <- typeCheckEv e2 funEnv typeEnv;
@@ -114,7 +113,6 @@ typeCheckEv(A.EPow e1 e2) funEnv typeEnv = do {
     if v2/=TInt then throwError $ "Second argument of (^) is of wrong type " ++ (show v2) else
     return v1
 }
-
 
 typeCheckEv (A.EMul e1 op e2) funEnv typeEnv = do
   v1 <- typeCheckEv e1 funEnv typeEnv
@@ -486,9 +484,7 @@ typeCheckProg (A.Prog ((A.ExDef d):t)) funEnv typeEnv = do
 
 evalProg :: Program -> Env -> FunEnv -> EvalMonad Value
 
-
 evalProg (A.Prog []) env funEnv = do throwError $ "Program invalid: main not found"
-
 
 evalProg (A.Prog ((A.ExDecl f s):t)) env funEnv = do 
     v <- evalProg (A.Prog t) env funEnv;
