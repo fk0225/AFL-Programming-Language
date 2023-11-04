@@ -97,14 +97,14 @@ typeCheckEv (A.ENeg e) funEnv typeEnv = do {
     case v of
         TInt -> return TInt
         otherwise -> throwError $ "Argument of integer negation is of wrong type " ++ (show v)
-} -- MAKE SURE ALL INTEGERS
+}
 
 typeCheckEv(A.ENot e) funEnv typeEnv = do {
     v <- typeCheckEv e funEnv typeEnv;
     case v of
         TBool -> return TBool
         otherwise -> throwError $ "Argument of logical negation is of wrong type " ++ (show v)
-} -- MAKE SURE ALL BOOLEANS
+}
 
 
 typeCheckEv(A.EPow e1 e2) funEnv typeEnv = do {
@@ -113,7 +113,7 @@ typeCheckEv(A.EPow e1 e2) funEnv typeEnv = do {
     if v1/=TInt then throwError $ "First argument of (^) is of wrong type " ++ (show v1) else
     if v2/=TInt then throwError $ "Second argument of (^) is of wrong type " ++ (show v2) else
     return v1
-} -- MAKE SURE ALL INTEGERS
+}
 
 
 typeCheckEv (A.EMul e1 op e2) funEnv typeEnv = do
@@ -125,8 +125,6 @@ typeCheckEv (A.EMul e1 op e2) funEnv typeEnv = do
         TInt -> return TInt
         otherwise -> throwError $ "Second argument of " ++ show(op) ++ " is of wrong type " ++ (show v2)
     otherwise -> throwError $ "First argument of " ++ show(op) ++ " is of wrong type " ++ (show v1)
-
- -- MAKE SURE ALL INTEGERS
 
 typeCheckEv (A.EAdd e1 op e2) funEnv typeEnv = do
   v1 <- typeCheckEv e1 funEnv typeEnv
@@ -157,7 +155,6 @@ typeCheckEv (A.EAnd e1 e2) funEnv typeEnv = do
         TBool -> return TBool
         otherwise -> throwError $ "Second argument of AND is of wrong type " ++ (show v2)
     otherwise -> throwError $ "First argument of AND is of wrong type " ++ (show v1)
-
 
 typeCheckEv (A.EOr e1 op e2) funEnv typeEnv = do
   v1 <- typeCheckEv e1 funEnv typeEnv
@@ -410,7 +407,6 @@ evalL (A.LBrackets (h:t)) env =
     else do
       vh <- evalEv h env
       vt <- evalL (A.LBrackets t) env
-      --let (VEv e) = vh
       let (VList l) = vt
       return (VList (vh:l))
 
