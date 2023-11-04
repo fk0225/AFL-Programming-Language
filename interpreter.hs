@@ -338,7 +338,6 @@ evalEv (A.EAdd e1 op e2) env = do
     let (VInt n2) = v2;
     return (VInt (applyAddOp op n1 n2));
 
-
 evalEv (A.ERel e1 op e2) env = do 
     v1 <- evalEv e1 env;
     v2 <- evalEv e2 env;
@@ -346,14 +345,12 @@ evalEv (A.ERel e1 op e2) env = do
     let (VInt n2) = v2;
     return (VBool (applyRelOp op n1 n2));
 
-
 evalEv (A.EAnd e1 e2) env = do 
     v1 <- evalEv e1 env;
     v2 <- evalEv e2 env;
     let (VBool b1) = v1;
     let (VBool b2) = v2 
     return (VBool (b1 && b2));
-
 
 evalEv (A.EOr e1 op e2) env = do 
     v1 <- evalEv e1 env;
@@ -382,7 +379,6 @@ evalEv(A.ELet (A.FunName i) s e1 e2) env = do
   v2 <- evalEv e2 (insert i v1 env); 
   return v2
 
-
 evalEv(A.ELam (A.FunName i) si e se) env = do return (VClos i e env)
     
 evalEv(A.EFunApp f x) env = do 
@@ -390,7 +386,6 @@ evalEv(A.EFunApp f x) env = do
     vx <- evalEv x env;
     vApp <- apply vf vx; 
     return vApp
-
 
 evalEv (A.EVar (A.FunName f)) env = do
     if member f env
